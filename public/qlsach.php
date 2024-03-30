@@ -1,20 +1,41 @@
 <?php
 require_once __DIR__ . '/../src/connect.php';
-// Gọi procedure để hiển thị thông tin sách
-$sql = "CALL hthiSach()";
+// Gọi procedure 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sort'])) {
+    // Gọi procedure để sắp xếp sách theo tên
+    $sql = "CALL sapXepSach()";
+    
+} else {
+    // Nếu không có yêu cầu sắp xếp, hiển thị thông tin sách bình thường
+    $sql = "CALL hthiSach()";
+
+}
+
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 include_once __DIR__. '/../src/partials/header.php'
 ?>
-<div class="container-fluid">
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-6">
+            <a href="/them_sach.php" class="btn btn-primary">
+                <i class="fa-solid fa-plus"></i> Thêm sách
+            </a>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+            <form method="post">
+                <button class="btn btn-secondary" type="submit" name="sort">
+                    Sắp xếp
+                </button>
+            </form>
+        </div>
+    </div>
     <div class="row">
         <div class="col">
 
-            <a href="/them_sach.php" class="btn btn-primary mb-3">
-                <i class="fa-solid fa-plus"></i></i> Thêm sách
-            </a>
+
             <table class="table table-bordered border-primary">
                 <thead>
                     <tr>
