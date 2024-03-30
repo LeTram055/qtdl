@@ -1,0 +1,147 @@
+<?php
+include __DIR__ . '/../src/connect.php';
+
+$errors = [];
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $fullname = $_POST['fullname'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+
+    $stmt = $pdo->prepare("SELECT id FROM taikhoan WHERE tenDN = ?");
+    $stmt->execute([$username]);
+    if ($stmt->rowCount() > 0) {
+        $errors[] = "Tên đăng nhập đã tồn tại.";
+    }
+
+    // Nếu không có lỗi, thêm người dùng mới vào cơ sở dữ liệu
+    if (empty($errors)) {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $stmt = $pdo->prepare("INSERT INTO taikhoan (tenDayDu, tenDN, matKhau) VALUES (?, ?, ?)");
+        if ($stmt->execute([$fullname, $username, $hashed_password])) {
+            echo '<script>alert("Đăng ký thành công!");</script>';
+            header("Location: login.php"); // Chuyển hướng đến trang đăng nhập sau khi đăng ký thành công
+            exit();
+        } else {
+            $errors[] = "Đã xảy ra lỗi khi đăng ký. Vui lòng thử lại sau.";
+        }
+    }
+}
+
+?>
+
+function formValidate() {
+    var fullName = document.getElementById("fullname").value;
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var confirmPassword = document.getElementById("confirm_password").value;
+    var errorDiv = document.querySelector('.nhapsai');
+
+    errorDiv.innerHTML = '';
+
+    if (fullName.length < 2) {
+        errorDiv.innerHTML = 'Họ tên phải có ít nhất 2 kí tự<br>';
+        return false;
+    }
+
+    if (username.length < 2) {
+        errorDiv.innerHTML += 'Tên đăng nhập phải có ít nhất 2 kí tự<br>';
+        return false;
+    }
+
+    if (password.length < 8) {
+        errorDiv.innerHTML += 'Mật khẩu phải có ít nhất 8 kí tự<br>';
+        return false;
+    }
+
+    if (password !== confirmPassword) {
+        errorDiv.innerHTML += 'Mật khẩu nhập lại không trùng khớp<br>';
+        return false;
+    }
+
+    return true;
+}
+
+
+$.validator.setDefaults({
+    submitHandler: function () {
+        alert('submitted!');
+    },
+});
+
+$(document).ready(function () {
+    $('registerForm').validate({
+        rules: {
+            firstname: 'required',
+            lastname: 'required',
+            username: { required: true, minlength: 2 },
+            password: { required: true, minlength: 5 },
+            confirm_password: {
+                required: true,
+                minlength: 5,
+                equalTo: '#password',
+
+            },
+            email: { required: true, email: true },
+            agree: 'required',
+        },
+        messages: {
+            fullname: 'Bạn chưa nhập vào họ têncủa bạn',
+            username: {
+                required: 'Bạn chưa nhập vào tên đăng nhập',
+                minlength: 'Tên đăng nhập phải có ít nhất 2 ký tự ',
+            },
+            password: {
+                required: 'Bạn chưa nhập mật khẩu',
+                minlength: 'Mật khẩu phải có ít nhất 5 ký tự ',
+            },
+            confirm_password: {
+                required: 'Bạn chưa nhập mật khẩu',
+                minlength: 'Mật khẩu phải có ít nhất 5 ký tự ',
+                equalTo:
+                    'Mật khẩu không trùng khớp với mật khẩu đã nhập',
+            }
+        },
+        errorElement: 'div',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            error.insertAfter(element);
+
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element)
+                .addClass('is-invalid')
+                .removeClass('is-valid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element)
+                .addClass('is-valid')
+                .removeClass('is-invalid');
+        },
+
+    });
+});
+
+<?php
+require_once __DIR__ . '/../src/connect.php';
+
+$maSach = $_POST['maSach'];
+    
+
+$sql = "select * from sach where maSach = :maSach";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['maSach' => $maSach]);
+$sach = $stmt->fetch();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST'
+    && isset($_POST['maSach'])
+    && ($sach = $stmt->fetch())
+) {
+    $sql = "delete from sach where maSach = :maSach";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['maSach' => $maSach]);
+}
+
+
+?>
