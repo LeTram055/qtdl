@@ -15,12 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['maSach'])) {
     // Xóa thành công
         echo "<script>
             alert('Không thể xóa sách do tồn tại ràng buộc.');
-            window.location.href = 'qlsach.php';
+            window.location.href = 'qlsach2.php';
         </script>";
     
     } else {
         // Xóa thành công
-        redirect("qlsach.php");
+        redirect("qlsach2.php");
         
     }
 }

@@ -23,19 +23,24 @@ else {
 
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-include_once __DIR__. '/../src/partials/header.php'
+include_once __DIR__. '/../src/partials/header2.php'
 ?>
 <div class="container">
     <div class="row mb-3">
         <div class="col d-flex justify-content-center ">
-            <form class="d-flex align-items-center" method="GET" action="/qlsach.php" class="w-100">
+            <form class="d-flex align-items-center" method="GET" action="/qlsach2.php" class="w-100">
                 <input class="m-2" type="search" placeholder="Nhập tên sách" aria-label="search" name="keyword">
                 <button class="btn btn-outline-primary" type="submit">Tìm kiếm</button>
             </form>
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col d-flex justify-content-end">
+        <div class="col-6">
+            <a href="/them_sach2.php" class="btn btn-primary">
+                <i class="fa-solid fa-plus"></i> Thêm sách
+            </a>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
             <form method="post">
                 <button class="btn btn-secondary" type="submit" name="sort">
                     Sắp xếp
@@ -56,7 +61,7 @@ include_once __DIR__. '/../src/partials/header.php'
                         <th>Thể loại</th>
                         <th>Nhà xuất bản</th>
                         <th>Năm xuất bản</th>
-
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,7 +74,19 @@ include_once __DIR__. '/../src/partials/header.php'
                         <td><?= html_escape($row['tenTL']) ?></td>
                         <td><?= html_escape($row['tenNXB']) ?></td>
                         <td><?= html_escape($row['namXuatBan']) ?></td>
-
+                        <td class="d-flex justify-content-center">
+                            <a href="<?= 'sua_sach2.php?maSach=' . $row['maSach'] ?>"
+                                class="btn btn-xs btn-warning mr-1">
+                                Sửa</a>
+                            <div style="width: 10px;"></div>
+                            <form class="form-inline ml-1" action="/xoa_sach2.php" method="POST">
+                                <input type="hidden" name="maSach" value="<?= $row['maSach'] ?>">
+                                <button id="delete-sach-btn" type="button" class="btn btn-xs btn-danger  delete-btn"
+                                    data-toggle="modal" name="delete-sach" data-target="#delete-confirm">
+                                    Xóa
+                                </button>
+                            </form>
+                        </td>
                     </tr>
 
 
@@ -77,6 +94,23 @@ include_once __DIR__. '/../src/partials/header.php'
                 </tbody>
             </table>
 
+            <div id="delete-confirm" class="modal fade" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Xác nhận</h4>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body"></div>
+                        <div class="modal-footer">
+                            <button type="button" data-dismiss="modal" class="btn btn-danger" id="delete">Xóa</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-default">Hủy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../src/connect.php';
 session_start();
+require_once __DIR__ . '/../src/connect.php';
 
 $error_message = '';
 
@@ -20,10 +20,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if(password_verify($_POST['password'], $user['matKhau'])) {
                 // Đăng nhập thành công
                 $_SESSION['username'] = $_POST['username'];
+                var_dump($_SESSION['username']);
                 if ($user['quyen'] == 'admin') {
+                    $_SESSION['role'] = 'admin';
                     redirect('index2.php');
                     exit(); // Kết thúc quá trình xử lý và chuyển hướng
                 } else {
+                    $_SESSION['role'] = 'user';
                     redirect('index.php');
                     exit(); // Kết thúc quá trình xử lý và chuyển hướng
                 }
