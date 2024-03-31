@@ -139,64 +139,10 @@ insert into CTMuonTra(maMT, maSach, ghiChu, daTra, ngayTra) values
 ("MT002", "S001", "", "0", null),
 ("MT003", "S001", "", "1", "2024-3-20");
 
+insert into taikhoan (tenDayDu, tenDN, matKhau, quyen) values
+("admin", "admin", "$2y$10$mU8tZDU1HqS6czuX2P/KBuZK13.HhtzTVosfeY2noQuEVt.fk0PvO", "admin"),
+("lê trâm", "tramle", "$2y$10$1diHoR18InmIAUVsz4ppY.Ydcd5KKllkqDs60PqymiCahbwjUUODK", "");
 
-"""
--- Hàm đăng nhập
-delimiter //
-drop function if exists dangNhap//
-create function dangNhap (
-    tentaikhoan char(10),
-    matkhau char(10),
-    quyen char(10)
-)
-returns boolean reads sql data
-begin
-    declare count int;
-    select count(*) into count from taikhoan 
-    where tendn = tentaikhoan and matkhau = matkhau and quyen = quyen;
-    if count > 0 then
-        return true;
-    else
-        return false;
-    end if;
-end //
-delimiter ;
-
--- check
-delimiter //
-drop procedure if exists check_dangNhap//
-create procedure check_dangNhap()
-begin
-    if dangNhap('tran', 'tram', 'user') then
-        select 'Đăng nhập thành công';
-    else
-        select 'Đăng nhập thất bại';
-    end if;
-end;
-//
-
-delimiter ;
-
-call check_dangNhap();
-
-
--- Đăng ký
-delimiter //
-drop procedure if exists dangKy//
-create procedure dangKy (
-    tentaikhoan char(10),
-    matkhau char(10),
-    quyen char(10)
-)
-begin
-    insert into taikhoan
-    values(tentaikhoan, matkhau, quyen);
-end //
-delimiter ;
-
-call dangKy("tram", "tram", "admin");
-select * from taikhoan;
-"""
 -- Hiển thị thông tin sách
 delimiter //
 drop procedure if exists hthiSach//
