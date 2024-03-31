@@ -100,6 +100,9 @@ include_once __DIR__. '/../src/partials/header.php'
                 </div>
                 <button type="submit" class="btn btn-primary">Đăng ký</button>
             </form>
+            <div class="text-center mt-3">
+                <p>Bạn đã có tài khoản? <a href="dangnhap.php">Đăng nhập ngay</a>.</p>
+            </div>
         </div>
     </div>
 </div>

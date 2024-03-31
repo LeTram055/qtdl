@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if(password_verify($_POST['password'], $user['matKhau'])) {
                 // Đăng nhập thành công
                 $_SESSION['username'] = $_POST['username'];
-                var_dump($_SESSION['username']);
+                
                 if ($user['quyen'] == 'admin') {
                     $_SESSION['role'] = 'admin';
                     redirect('index2.php');

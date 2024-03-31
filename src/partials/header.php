@@ -1,3 +1,9 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,12 +46,12 @@
                         </li>
                     </ul>
                     <ul class="account">
-                        <?php if(session_status() === PHP_SESSION_ACTIVE && isset($_SESSION['username'])): ?>
+                        <?php if(isset($_SESSION['username'])): ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                                 aria-expanded="false"><?php echo $_SESSION['username']; ?></a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                                <li><a class="dropdown-item" href="dangxuat.php">Đăng xuất</a></li>
                             </ul>
                         </li>
                         <?php else: ?>

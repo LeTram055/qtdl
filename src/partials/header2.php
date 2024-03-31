@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +27,7 @@
     <div class="container-fluid header mb-3">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a href="index.php" class="title">Quản lí Thư Viện</a>
+                <a href="index2.php" class="title">Quản lí Thư Viện</a>
 
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -40,12 +45,12 @@
                         </li>
                     </ul>
                     <ul class="account">
-                        <?php if(session_status() === PHP_SESSION_ACTIVE && isset($_SESSION['username'])): ?>
+                        <?php if(isset($_SESSION['username'])): ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                                 aria-expanded="false"><?php echo $_SESSION['username']; ?></a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                                <li><a class="dropdown-item" href="dangxuat.php">Đăng xuất</a></li>
                             </ul>
                         </li>
                         <?php else: ?>
