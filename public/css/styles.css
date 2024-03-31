@@ -24,11 +24,18 @@
 }
 
 
-/*login*/
-/*
-.login-form {
-    border: 1px solid #ced4da; 
-    border-radius: 10px; 
-    padding: 20px;
+/* thống kê*/
+
+.hinh {
+    font-weight: 900;
+    font-size: 50px;
 }
-*/
+
+.chu {
+    font-size: 20px;
+}
+
+.so {
+    font-weight: 900;
+    font-size: 30px;
+}

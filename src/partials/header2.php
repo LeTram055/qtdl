@@ -41,7 +41,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <a class="nav-link active text-reset" aria-current="page" href="qlsach2.php">Sách</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active text-reset" href="#">Sản phẩm</a>
+                            <a class="nav-link active text-reset" href="thongke2.php">Thống kê</a>
                         </li>
                     </ul>
                     <ul class="account">
