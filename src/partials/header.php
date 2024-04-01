@@ -43,6 +43,21 @@ if (session_status() === PHP_SESSION_NONE) {
                             <a class="nav-link active text-reset" aria-current="page" href="qlsach.php">Sách</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link active text-reset" href="tacgia.php">Tác giả</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-reset" href="theloai.php">Thể loại</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-reset" href="nxb.php">Nhà xuất bản</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-reset" href="docgia.php">Độc giả</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-reset" href="thethuvien.php">Thẻ thư viện</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active text-reset" href="muontra.php">Mượn trả</a>
                         </li>
                     </ul>

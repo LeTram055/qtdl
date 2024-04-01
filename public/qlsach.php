@@ -66,7 +66,7 @@ include_once __DIR__. '/../src/partials/header.php'
     <div class="row mb-3">
         <div class="col d-flex justify-content-center ">
             <form class="d-flex align-items-center" method="GET" action="/qlsach.php" class="w-100">
-                <input class="m-2" type="search" placeholder="Nhập tên sách" aria-label="search" name="keyword"
+                <input class="m-2" type="search" placeholder="Nhập từ khóa" aria-label="search" name="keyword"
                     value="<?= isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>">
                 <button class="btn btn-outline-primary" type="submit">Tìm kiếm</button>
             </form>
