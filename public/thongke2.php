@@ -7,6 +7,8 @@ $tongTL = 0;
 $tongNXB = 0;
 $tongDG = 0;
 $tongMT = 0;
+$tongNV = 0;
+$tongTTV = 0;
 
 //sách
 $sql = "SELECT COUNT(*) FROM sach";
@@ -32,17 +34,31 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $tongNXB = $stmt->fetchColumn();
 
+//nhân viên
+$sql = "SELECT COUNT(*) FROM nhanVien";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$tongNV = $stmt->fetchColumn();
+
 //độc giả
 $sql = "SELECT COUNT(*) FROM docGia";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $tongDG = $stmt->fetchColumn();
 
-//độc giả
+//thẻ
+$sql = "SELECT COUNT(*) FROM theThuVien";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$tongTTV = $stmt->fetchColumn();
+
+//sách đã mượn
 $sql = "SELECT COUNT(maSach) FROM CTMuonTra WHERE daTra = '0'";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $tongMT = $stmt->fetchColumn();
+
+
 
 include_once __DIR__. '/../src/partials/header2.php'
 ?>
@@ -55,23 +71,30 @@ include_once __DIR__. '/../src/partials/header2.php'
         </div>
 
         <div class="col bg-danger-subtle text-center m-3 p-3">
-            <p class="hinh"><i class="fa-solid fa-user"></i></p>
-            <p class="chu">TÁC GIẢ</p>
-            <p class="so"><?php echo $tongTG; ?></p>
+            <p class="hinh"><i class="fa-solid fa-book"></i></p>
+            <p class="chu">SÁCH ĐÃ CHO MƯỢN</p>
+            <p class="so"><?php echo $tongMT; ?></p>
         </div>
 
         <div class="col bg-warning text-white text-center m-3 p-3">
-            <p class="hinh"><i class="fa-solid fa-layer-group"></i></p>
-            <p class="chu">THỂ LOẠI</p>
-            <p class="so"><?php echo $tongTL; ?></p>
+            <p class="hinh"><i class="fa-solid fa-book"></i></p>
+            <p class="chu">SÁCH CÒN TRONG THƯ VIỆN</p>
+            <p class="so"><?php echo ($tongSach - $tongMT); ?></p>
+        </div>
+
+        <div class="col bg-warning-subtle text-center m-3 p-3">
+            <p class="hinh"><i class="fa-solid fa-person-shelter"></i></p>
+            <p class="chu">NHÀ XUẤT BẢN</p>
+            <p class="so"><?php echo $tongNXB; ?></p>
         </div>
 
     </div>
     <div class="row">
         <div class="col bg-success-subtle text-center m-3 p-3">
-            <p class="hinh"><i class="fa-solid fa-person-shelter"></i></p>
-            <p class="chu">NHÀ XUẤT BẢN</p>
-            <p class="so"><?php echo $tongNXB; ?></p>
+            <p class="hinh"><i class="fa-solid fa-user"></i></p>
+            <p class="chu">NHÂN VIÊN</p>
+            <p class="so"><?php echo $tongNV; ?></p>
+
         </div>
 
         <div class="col bg-success text-white text-center m-3 p-3">
@@ -81,11 +104,16 @@ include_once __DIR__. '/../src/partials/header2.php'
         </div>
 
         <div class="col bg-info-subtle text-center m-3 p-3">
-            <p class="hinh"><i class="fa-solid fa-book"></i></p>
-            <p class="chu">SÁCH ĐÃ CHO MƯỢN</p>
-            <p class="so"><?php echo $tongMT; ?></p>
+            <p class="hinh"><i class="fa-solid fa-user"></i></p>
+            <p class="chu">TÁC GIẢ</p>
+            <p class="so"><?php echo $tongTG; ?></p>
         </div>
 
+        <div class="col bg-info text-white text-center m-3 p-3">
+            <p class="hinh"><i class="fa-solid fa-layer-group"></i></p>
+            <p class="chu">THỂ LOẠI</p>
+            <p class="so"><?php echo $tongTL; ?></p>
+        </div>
     </div>
 
 </div>

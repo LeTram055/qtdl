@@ -84,7 +84,7 @@ if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin'){
     <div class="row mb-3">
         <div class="col-6">
             <a href="/them_muontra.php" class="btn btn-primary">
-                <i class="fa-solid fa-plus"></i> Thêm sách
+                <i class="fa-solid fa-plus"></i> Thêm mượn sách
             </a>
         </div>
         <div class="col-6 d-flex justify-content-end">

@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     if (sach.length > 0) {
       $('.modal-body').html(
-        `Bạn có muốn xóa sách "${sach.text()}" không?`
+        `Bạn có muốn xóa "${sach.text()}" không?`
       );
     }
 
