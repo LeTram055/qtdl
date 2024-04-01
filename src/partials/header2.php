@@ -29,22 +29,26 @@ if (session_status() === PHP_SESSION_NONE) {
             <div class="container-fluid">
                 <a href="index2.php" class="title">Quản lí Thư Viện</a>
 
-
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <?php if (isset($_SESSION['username'])) : ?>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active text-reset" aria-current="page" href="qlsach2.php">Sách</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link active text-reset" href="muontra.php">Mượn trả</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active text-reset" href="thongke2.php">Thống kê</a>
                         </li>
                     </ul>
-                    <ul class="account">
+                    <?php endif; ?>
+                    <ul class="account mx-3">
                         <?php if(isset($_SESSION['username'])): ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"

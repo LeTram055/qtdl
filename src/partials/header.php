@@ -36,16 +36,18 @@ if (session_status() === PHP_SESSION_NONE) {
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <?php if (isset($_SESSION['username'])) : ?>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active text-reset" aria-current="page" href="qlsach.php">Sách</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active text-reset" href="#">Sản phẩm</a>
+                            <a class="nav-link active text-reset" href="muontra.php">Mượn trả</a>
                         </li>
                     </ul>
-                    <ul class="account">
+                    <?php endif; ?>
+                    <ul class="account mx-3">
                         <?php if(isset($_SESSION['username'])): ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"

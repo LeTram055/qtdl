@@ -38,9 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             echo "<script>
                     alert ('Đăng ký thành công!')
-                    setTimeout(function() {
-                        window.location.href = 'dangnhap.php';
-                    }, 1000); // Chuyển hướng sau 2 giây
+                    window.location.href = 'dangnhap.php';
                 </script>";
 
             exit();
