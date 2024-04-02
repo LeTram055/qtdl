@@ -66,7 +66,7 @@ include_once __DIR__ . '/../src/partials/header2.php'
                 <div class="form-group">
                     <label for="maNXB">Mã nhà xuất bản</label>
                     <input type="text" name="maNXB" class="form-control" maxlen="10" id="maNXB"
-                        placeholder="Nhập nhà xuất bản" value="<?= html_escape($nhaXuatBan['maNXB']) ?>" required />
+                        placeholder="Nhập nhà xuất bản" value="<?= html_escape($nhaXuatBan['maNXB']) ?>" readonly />
 
 
                 </div>

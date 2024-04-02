@@ -77,7 +77,7 @@ include_once __DIR__ . '/../src/partials/header.php'
                     <label for="website">Website </label>
                     <input type="text" name="website" class="form-control" maxlen="50" id="website"
                         placeholder="Nhập website"
-                        value="<?= isset($_POST['website']) ? html_escape($_POST['website']) : '' ?>" required />
+                        value="<?= isset($_POST['website']) ? html_escape($_POST['website']) : '' ?>" />
 
 
                 </div>

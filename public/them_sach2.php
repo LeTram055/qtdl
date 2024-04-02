@@ -52,7 +52,7 @@ include_once __DIR__. '/../src/partials/header.php'
 <div class="container">
     <div class="row">
         <div class="col">
-            <h2 class="text-center">Cập nhật sách</h2>
+            <h2 class="text-center">Thêm sách</h2>
             <form method="post" enctype="multipart/form-data" class="col-md-6 offset-md-3">
 
                 <input type="hidden" name="maSach" value="<?= $maSach ?>">

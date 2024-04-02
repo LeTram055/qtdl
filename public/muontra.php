@@ -139,7 +139,7 @@ if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin'){
                             <form class="form-inline m-1" action="/xoa_muontra.php" method="POST">
                                 <input type="hidden" name="maMT" value="<?= $row['maMT'] ?>">
                                 <input type="hidden" name="maSach" value="<?= $row['maSach'] ?>">
-                                <button id="delete-sach-btn" type="button" class="btn btn-xs btn-danger  delete-btn"
+                                <button id="delete-sach-btn" type="button" class="btn btn-xs btn-danger  delete-mt-btn"
                                     data-toggle="modal" name="delete-sach" data-target="#delete-confirm">
                                     Xóa
                                 </button>

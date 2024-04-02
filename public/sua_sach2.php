@@ -69,7 +69,7 @@ include_once __DIR__. '/../src/partials/header2.php'
                 <div class="form-group">
                     <label for="maSach">Mã sách</label>
                     <input type="text" name="maSach" class="form-control" maxlen="10" id="maSach"
-                        placeholder="Nhập mã sách" value="<?= html_escape($sach['maSach']) ?>" required />
+                        placeholder="Nhập mã sách" value="<?= html_escape($sach['maSach']) ?>" readonly />
 
 
                 </div>

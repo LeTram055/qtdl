@@ -64,7 +64,7 @@ include_once __DIR__ . '/../src/partials/header2.php'
                 <div class="form-group">
                     <label for="soThe">Số thẻ</label>
                     <input type="text" name="soThe" class="form-control" maxlen="10" id="soThe"
-                        placeholder="Nhập số thẻ" value="<?= html_escape($thethuvien['soThe']) ?>" required />
+                        placeholder="Nhập số thẻ" value="<?= html_escape($thethuvien['soThe']) ?>" readonly />
 
 
                 </div>
@@ -87,7 +87,7 @@ include_once __DIR__ . '/../src/partials/header2.php'
 
                 </div>
 
-                <!-- Tên nhà xuất bản -->
+                <!-- Ghi chú -->
                 <div class="form-group">
                     <label for="ghiChu">Ghi chú </label>
                     <input type="text" name="ghiChu" class="form-control" maxlen="250" id="ghiChu"

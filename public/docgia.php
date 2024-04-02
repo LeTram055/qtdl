@@ -10,7 +10,7 @@ function exportToExcel($data) {
     $sheet = $spreadsheet->getActiveSheet();
 
     // Thiết lập header
-    $header = ['Mã thể loại', 'Tên thể loại'];
+    $header = ['Mã độc giả', 'Tên độc giả', 'Địa chỉ', 'Số thẻ'];
     $sheet->fromArray($header, NULL, 'A1');
 
     // Ghi dữ liệu
@@ -22,7 +22,7 @@ function exportToExcel($data) {
 
     // Thiết lập response header để tải file về
     header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="theloai.xls"');
+    header('Content-Disposition: attachment;filename="docgia.xls"');
     header('Cache-Control: max-age=0');
 
     // Tạo một file Excel tạm thời và ghi dữ liệu vào nó
@@ -35,17 +35,17 @@ function exportToExcel($data) {
 // Gọi procedure 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sort'])) {
     // Gọi procedure để sắp xếp sách theo tên
-    $sql = "CALL sapXepTL()";
+    $sql = "CALL sapXepDG()";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['keyword'])) {
     $keyword = $_GET['keyword'];
-    $sql = "CALL timKiemTL(?)";
+    $sql = "CALL timKiemDG(?)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$keyword]);
 } else {
     // Nếu không có yêu cầu sắp xếp, hiển thị thông tin sách bình thường
-    $sql = "CALL hthiTL()";
+    $sql = "CALL hthiDG()";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 }
@@ -56,26 +56,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['export'])) {
   exportToExcel($rows);
 }
 
-
-include_once __DIR__ . '/../src/partials/header2.php'
+include_once __DIR__ . '/../src/partials/header.php'
 ?>
 <div class="container">
     <div class="row mb-3">
         <div class="col d-flex justify-content-center ">
-            <form class="d-flex align-items-center" method="GET" action="/theloai2.php" class="w-100">
-                <input class="m-2" type="search" placeholder="Nhập tên thể loại hoặc mã thể loại" aria-label="search"
+            <form class="d-flex align-items-center" method="GET" action="/docgia.php" class="w-100">
+                <input class="m-2" type="search" placeholder="Nhập tên độc giả hoạc mã độc giả" aria-label="search"
                     name="keyword" value="<?= isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>">
                 <button class="btn btn-outline-primary" type="submit">Tìm kiếm</button>
             </form>
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col-6">
-            <a href="/them_theloai2.php" class="btn btn-primary">
-                <i class="fa-solid fa-plus"></i> Thêm thể loại
-            </a>
-        </div>
-        <div class="col-6 d-flex justify-content-end">
+        <div class="col d-flex justify-content-end">
             <form method="post">
                 <button class="btn btn-secondary" type="submit" name="sort">
                     Sắp xếp
@@ -96,55 +90,25 @@ include_once __DIR__ . '/../src/partials/header2.php'
             <table class="table table-bordered border-primary">
                 <thead>
                     <tr>
-                        <th>Mã thể loại</th>
-                        <th>Tên thể loại</th>
-                        <th class="text-center">Hành động</th>
+                        <th>Mã độc giả</th>
+                        <th>Tên độc giả</th>
+                        <th>Địa chỉ</th>
+                        <th>Số thẻ</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($rows as $row) : ?>
 
                     <tr>
-                        <td><?= html_escape($row['maTL']) ?></td>
-                        <td><?= html_escape($row['tenTL']) ?></td>
-
-                        <td class="d-flex justify-content-center">
-                            <a href="<?= 'sua_theloai2.php?maTL=' . $row['maTL'] ?>"
-                                class="btn btn-xs btn-warning mr-1">
-                                Sửa</a>
-                            <div style="width: 10px;"></div>
-                            <form class="form-inline ml-1" action="/xoa_theloai2.php" method="POST">
-                                <input type="hidden" name="maTL" value="<?= $row['maTL'] ?>">
-                                <button id="delete-sach-btn" type="button" class="btn btn-xs btn-danger  delete-btn"
-                                    data-toggle="modal" name="delete-sach" data-target="#delete-confirm">
-                                    Xóa
-                                </button>
-                            </form>
-                        </td>
+                        <td><?= html_escape($row['maDG']) ?></td>
+                        <td><?= html_escape($row['tenDG']) ?></td>
+                        <td><?= html_escape($row['diaChi']) ?></td>
+                        <td><?= html_escape($row['soThe']) ?></td>
                     </tr>
-
-
                     <?php endforeach ?>
                 </tbody>
             </table>
 
-            <div id="delete-confirm" class="modal fade" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Xác nhận</h4>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body"></div>
-                        <div class="modal-footer">
-                            <button type="button" data-dismiss="modal" class="btn btn-danger" id="delete">Xóa</button>
-                            <button type="button" data-dismiss="modal" class="btn btn-default">Hủy</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>

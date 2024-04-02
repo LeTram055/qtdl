@@ -98,6 +98,7 @@ include_once __DIR__ . '/../src/partials/header2.php'
                         <th>Ngày bắt đầu</th>
                         <th>Ngày kết thúc</th>
                         <th>Ghi chú</th>
+                        <th class="text-center">Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -115,7 +116,7 @@ include_once __DIR__ . '/../src/partials/header2.php'
                             <div style="width: 10px;"></div>
                             <form class="form-inline ml-1" action="/xoa_ttv2.php" method="POST">
                                 <input type="hidden" name="soThe" value="<?= $row['soThe'] ?>">
-                                <button id="delete-sach-btn" type="button" class="btn btn-xs btn-danger  delete-btn"
+                                <button id="delete-sach-btn" type="button" class="btn btn-xs btn-danger delete-ttv-btn"
                                     data-toggle="modal" name="delete-ttv" data-target="#delete-confirm">
                                     Xóa
                                 </button>

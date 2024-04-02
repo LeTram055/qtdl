@@ -61,7 +61,7 @@ include_once __DIR__ . '/../src/partials/header2.php'
                 <div class="form-group">
                     <label for="maTL">Mã thể loại</label>
                     <input type="text" name="maTL" class="form-control" maxlen="10" id="maTL"
-                        placeholder="Nhập mã thể loại" value="<?= html_escape($theloai['maTL']) ?>" required />
+                        placeholder="Nhập mã thể loại" value="<?= html_escape($theloai['maTL']) ?>" readonly />
 
 
                 </div>

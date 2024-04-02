@@ -98,7 +98,7 @@ include_once __DIR__ . '/../src/partials/header2.php'
                         <th>Tên tác giả</th>
                         <th>Website</th>
                         <th>Ghi chú</th>
-                        <th>Hành động</th>
+                        <th class="text-center">Hành động</th>
                     </tr>
                 </thead>
                 <tbody>

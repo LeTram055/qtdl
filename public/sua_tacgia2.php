@@ -64,7 +64,7 @@ include_once __DIR__ . '/../src/partials/header2.php'
                 <div class="form-group">
                     <label for="maTG">Mã Tác giả</label>
                     <input type="text" name="maTG" class="form-control" maxlen="10" id="maTG"
-                        placeholder="Nhập mã tác giả" value="<?= html_escape($tacgia['maTG']) ?>" required />
+                        placeholder="Nhập mã tác giả" value="<?= html_escape($tacgia['maTG']) ?>" readonly />
 
 
                 </div>
@@ -78,22 +78,20 @@ include_once __DIR__ . '/../src/partials/header2.php'
 
                 </div>
 
-                <!-- Tên thể loại -->
+                <!-- Website -->
                 <div class="form-group">
                     <label for="website">Website </label>
                     <input type="text" name="website" class="form-control" maxlen="50" id="website"
-                        placeholder="Nhập website" value="<?= html_escape($tacgia['website']) ?>" required />
+                        placeholder="Nhập website" value="<?= html_escape($tacgia['website']) ?>" />
 
 
                 </div>
 
-                <!-- Tên nhà xuất bản -->
+                <!-- Ghi chú -->
                 <div class="form-group">
                     <label for="ghiChu">Ghi chú </label>
                     <input type="text" name="ghiChu" class="form-control" maxlen="250" id="ghiChu"
-                        placeholder="Nhập ghi chú" value="<?= html_escape($tacgia['ghiChu']) ?>" required />
-
-
+                        placeholder="Nhập ghi chú" value="<?= html_escape($tacgia['ghiChu']) ?>" />
                 </div>
 
                 <!-- Submit -->
