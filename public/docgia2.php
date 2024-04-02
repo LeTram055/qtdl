@@ -58,7 +58,7 @@ include_once __DIR__ . '/../src/partials/header2.php'
 <div class="container">
     <div class="row mb-3">
         <div class="col d-flex justify-content-center ">
-            <form class="d-flex align-items-center" method="GET" action="/docgia.php" class="w-100">
+            <form class="d-flex align-items-center" method="GET" action="/docgia2.php" class="w-100">
                 <input class="m-2" type="search" placeholder="Nhập tên độc giả hoạc mã độc giả" aria-label="search"
                     name="keyword" value="<?= isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>">
                 <button class="btn btn-outline-primary" type="submit">Tìm kiếm</button>
